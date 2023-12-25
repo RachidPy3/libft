@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouatac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 14:55:17 by rmouatac          #+#    #+#             */
-/*   Updated: 2023/11/07 14:56:23 by rmouatac         ###   ########.fr       */
+/*   Created: 2023/11/01 15:21:54 by rmouatac          #+#    #+#             */
+/*   Updated: 2023/11/01 16:22:24 by rmouatac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	int	neg;
 	int	i;
-	int	num;
 
 	i = 0;
-	neg = 1;
-	num = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (s[i])
 	{
-		if (str[i] == '-')
-			neg *= -1;
+		if ((char)s[i] == (char)c)
+			return ((char *) s + i);
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		num = num * 10 + (str[i] - 48);
-		i++;
-	}
-	return (num * neg);
+	if ((char) c == '\0')
+		return ((char *) s + i);
+	return (0);
 }

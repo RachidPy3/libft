@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouatac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 11:58:42 by rmouatac          #+#    #+#             */
-/*   Updated: 2023/11/01 12:09:31 by rmouatac         ###   ########.fr       */
+/*   Created: 2023/11/07 11:54:44 by rmouatac          #+#    #+#             */
+/*   Updated: 2023/11/07 11:58:01 by rmouatac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	c;
-	size_t	i;
-
-	if (dstsize <= ft_strlen(dst))
-		return (dstsize + ft_strlen(src));
-	c = ft_strlen(dst);
-	i = 0;
-	while (src[i] != '\0' && c + 1 < dstsize)
+	while (n--)
 	{
-		dst[c] = src[i];
-		c++;
-		i++;
+		if (*(char *)s == (char)c)
+			return ((void *)s);
+		s++;
 	}
-	dst[c] = '\0';
-	return (ft_strlen(dst) + ft_strlen(&src[i]));
-	//&src[i] represents the remaining characters that were not copied to the dest which is 4 in our test ("orld")
+	return (NULL);
 }
